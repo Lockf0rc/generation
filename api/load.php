@@ -32,11 +32,8 @@ $this->query= "SELECT * FROM `$this->table`";
         $this->apiResults=$Adapter->getResults();
     
         }
-        
-    }
-    
-
-}
+      }
+  }
 
 ?>
 
