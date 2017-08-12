@@ -17,16 +17,39 @@ date_default_timezone_set('America/Los_Angeles');
 
 
 <body>
-
 <div class="container content">
  <div class="page-space">
-     <?php
-$user_name=$_COOKIE['user_name'];
-     echo '
-	 <a href="delete_cookie.php" class="btn btn-default"><button type="button" class="btn btn-primary btn-sm" ><i class="fa fa-user-o" aria-hidden="true"></i>
-'."$user_name  	&nbsp; ".'<i class="glyphicon glyphicon-log-out">LOG_OUT</i></button></a>
-		<a href="run.php" class="btn btn-default"><span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-list-alt">Checkout Equipment</i></span></a>
-	 ';
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>                        
+	      </button>
+	      <a class="navbar-brand" href="#">Generation<span class="sub-brand">&nbsp;&copy;2017</a>
+	    </div>
+
+	<div class="navbar-collapse collapse" id="myNavbar">
+	  <ul class="nav navbar-nav">
+	    <li class="active"><a href="delete_cookie.php"><i class="fa fa-user-o" aria-hidden="true"></i><?=$user_name?>&nbsp;<i class="glyphicon glyphicon-log-out">LOG-OUT</i></a></li>
+	    <li><a href="run.php"><i class="glyphicon glyphicon-list-alt">CheckoutEquipment</i></a></li>
+	    <li class="dropdown">
+	      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Equipment<span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+		<li><a href="#">ITEM1</a></li>
+		<li><a href="#">ITEM2</a></li>
+		<li><a href="#">ITEM3</a></li>
+	      </ul>
+	    </li>
+	  </ul>
+	  <ul class="nav navbar-nav navbar-right">
+	    <li><a href="#">Contact</a></li>
+	    <li class="active"><a href="#"><i class="fa fa-caret-square-o-up fa-3x" aria-hidden="true"></i> <span class="sr-only">(current)</span></a></li>
+	  </ul>
+	</div><!--/.nav-collapse -->
+	</nav>  
+<?php
      $jb= new \bootstrap\jumbotron('<h1>YOUR ITEMS</h1>');
      echo $jb;
  ?>
