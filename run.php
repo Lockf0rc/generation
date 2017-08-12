@@ -26,6 +26,7 @@ $object =new api('');
 $object->query="SELECT DISTINCT `Manufacture` FROM `Products`";
 $object->runQuery();
 $Manufactures=$object->getResults();
+print_r($Manufactures);
 ?>
 <style>
 
@@ -51,8 +52,8 @@ $Manufactures=$object->getResults();
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Equipment<span class="caret"></span></a>
               <ul class="dropdown-menu">
-		  <?php foreach ($Manucatures as $m): ?>    
-                <li><a href="#<?=$m?>"><?=$m?></a></li>
+		  <?php foreach ($Manufactures as $i=>$m): ?>    
+                <li><a href="#<?=$m['Manufacture']?>"><?=$m['Manufacture']?></a></li>
                <?php endforeach;?>
               </ul>
             </li>
