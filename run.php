@@ -15,29 +15,54 @@ if((isset($_COOKIE['user_name'])&&isset($_COOKIE['user_id']))||isset($_SESSION['
 include_once 'dependency/registry.php';
 
 date_default_timezone_set('America/Los_Angeles');
+   if(isset($_SESSION['is_admin_login'])){
+	  $user_id='0000';
+	$user_name='Admin_user'; 
+   }else{
+	$user_id=$_COOKIE['user_id'];
+   $user_name=$_COOKIE['user_name'];
+   }
 ?>
 <style>
 
 </style>
 
 <body>
+<div class="container content">	
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Generation<span class="sub-brand">&nbsp;&copy;2017</a>
+    </div>
+	
+	<div class="navbar-collapse collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="delete_cookie.php"><i class="fa fa-user-o" aria-hidden="true"></i>'."$user_name	&nbsp;".'<i class="glyphicon glyphicon-log-out">LOG_OUT</i></a></li>
+            <li><a href="checkin.php"><i class="glyphicon glyphicon-list-alt">Items Checked Out</i></a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Equipment<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Web Designs</a></li>
+                <li><a href="#">Illustrations</a></li>
+                <li><a href="#">3d Models</a></li>
+                <li><a href="#">Life Drawings</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Contact</a></li>
+            <li class="active"><a href="#">Fixed top <span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+ </nav>  
 
-<div class="container content">
  <div class="page-space">
      <?php
-
-		   if(isset($_SESSION['is_admin_login'])){
-			  $user_id='0000';
-			$user_name='Admin_user'; 
-		   }else{
-			$user_id=$_COOKIE['user_id'];
-		   $user_name=$_COOKIE['user_name'];
-		   }
-     echo '
-	 <a href="delete_cookie.php" class="btn btn-default"><button type="button" class="btn btn-primary btn-sm" ><i class="fa fa-user-o" aria-hidden="true"></i>
-'."$user_name 	&nbsp;".'<i class="glyphicon glyphicon-log-out">LOG_OUT</i></button></a>
-		<a href="checkin.php" class="btn btn-default"><span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-list-alt">Items Checked Out</i></span></a>
-	 ';
      $jb= new \bootstrap\jumbotron('<h1>Equipment Checkout</h1>');
      echo $jb;
  ?>
