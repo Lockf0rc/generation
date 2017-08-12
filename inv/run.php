@@ -1,6 +1,5 @@
 <?php
-
-include_once '../api/load.php';
+include_once '../api/api.php';
 ?>
 <!doctype html>
 <html>
@@ -12,35 +11,29 @@ include_once '../api/load.php';
 </head>
 <body>
 <?php
-$itemcode=$_GET[ic];
-if(isset($itemcode)){
-$object=new api('');
+$itemcode=$_GET['ic'];
+	if(isset($itemcode)){
+	$query="SELECT * FROM `general_inventory` WHERE item_code=$itemcode";
+	$object=new api($query);
+	
+	$item=$object->getResults();
+print_r($item);
+	}
 
-$object->query="SELECT * FROM `general_inventory` WHERE item_code=$itemcode";
-$object->runQuery();
-##print_r($object->getResults());
-$item=$object->getResults();
-}
-/*######<h5><?=(isset($_GET[i]))?$_GET[i]:'ITEM_NAME'?></h5>#####*/
 ?>
 <?php
-// After Clicking Submit
+//After Clicking Submit
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-$q=$_POST['q'];
-echo $q .'POST';
-unset($dbAdapter);unset($dbc);unset($db);
-unset($object);
-$object=new api('');
-$newQuantity= $item[0][quantity];
-print_r($newQuantity);
-$qpi=new api('');
+	$q=$_POST['q'];
+	$newQuantity= intval($item[0]['quantity'])+intval($q);
+	$query="UPDATE `general_inventory` SET quantity=$newQuantity WHERE item_code='$itemcode' ";
+	$obj=new api($query);
+	$obj->runQuery();
 
-$object->query="UPDATE `general_inventory` SET quantity='$newQuantity' WHERE item_code='$itemcode' ";
-$object->runQuery();
+
 }
+
 ?>
-
-
 
 <div class="container content">
 <form method="post" action=<?=$_SERVER['PHP_SELF']?> >
@@ -57,7 +50,7 @@ $object->runQuery();
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
 
 <script type="text/javascript"> 
-alert('testing');
+
  $(document).ready(function(){
 	alert('testing');
 	$('#mybtn').on('click',function(){

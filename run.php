@@ -13,7 +13,7 @@ if((isset($_COOKIE['user_name'])&&isset($_COOKIE['user_id']))||isset($_SESSION['
     die();
 }
 include_once 'dependency/registry.php';
-include_once 'api/load.php';
+include_once 'api/api.php';
 date_default_timezone_set('America/Los_Angeles');
    if(isset($_SESSION['is_admin_login'])){
 	  $user_id='0000';
@@ -24,7 +24,6 @@ date_default_timezone_set('America/Los_Angeles');
    }
 $object =new api('');
 $object->query="SELECT DISTINCT `Manufacture` FROM `Products`";
-$object->runQuery();
 $Manufactures=$object->getResults();
 print_r($Manufactures);
 ?>
@@ -53,14 +52,14 @@ print_r($Manufactures);
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Equipment<span class="caret"></span></a>
               <ul class="dropdown-menu">
 		  <?php foreach ($Manufactures as $i=>$m): ?>    
-                <li><a href="#<?=$m['Manufacture']?>"><?=$m['Manufacture']?></a></li>
+                <li><a href="<?="{$_SERVER['PHP_SELF']}?m={$m['Manufacture']}"?>"><?=$m['Manufacture']?></a></li>
                <?php endforeach;?>
               </ul>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Contact</a></li>
-            <li class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"><a href="#"><i class="fa fa-caret-square-o-up fa-3x" aria-hidden="true"></i> <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#"><i class="fa fa-caret-square-o-up fa-3x" aria-hidden="true"></i> <span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
  </nav>  
@@ -112,7 +111,7 @@ load_equipment via jquery
 </script>
 <script type="text/javascript"> 
  $(document).ready(function(){
-$('#accordion').load('data/load_equipment.php');
+$('#accordion').load("data/load_equipment.php");
  });
  $("form").submit(function(){
 	 $('#accordion').load('data/load_equipment.php');
