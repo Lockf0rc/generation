@@ -1,0 +1,58 @@
+<?php
+session_start();
+##NESTING ACCORDIONS http://jsfiddle.net/hqL7rz9p/
+include_once '../dependency/dba.php';
+include_once '../dependency/registry.php';
+#CREATE TEMPLATE FOR INSERTING EQUIPMENT
+if(empty($_SESSION['is_admin_login'])){
+    header("Location: login.php");
+    die();
+}
+?>
+<?php
+#ESTABLISH DATABASE QUERY FROM TABLE
+$query= "SELECT * FROM `equipment`ORDER BY  group_name ASC";
+$Equipment=array();
+$Adapter= @new dbAdapter('lockf0rc_generation',$query,$Equipment);
+$Equipment=$Adapter->getResults();
+
+?>
+<a href="history.php" class="btn btn-default"><button type="button" class="btn btn-primary btn-sm" >VIEW HISTORY LOG</button></a>
+	 <a href="../delete_cookie.php" class="btn btn-default"><button type="button" class="btn btn-primary btn-sm" ><i class="fa fa-user-o" aria-hidden="true"></i>
+		<i class="glyphicon glyphicon-log-out">LOG_OUT</i></button>
+	</a>
+	
+	 
+<body>
+
+<div class="container content">
+ <div class="page-space">
+
+<div class="jumbotron">
+  <h1>CURRENT DATABASE</h1>
+  </div>
+	<table class="success table table-striped table-condensed table-bordered">
+	   <thead>
+		  <tr>
+			 <th>EquipmentID</th>
+			 <th>Group</th>
+			 <th>isCheckedOut</th>
+			 <th>User_id</th>
+			 <th>UserName</th>
+			 <th>time</th>
+		   </tr>
+	   </thead>
+	<?php for($i=0,$num = count($Equipment); $i < $num; $i+=1):?>
+	<tr>
+		<td><?=$Equipment[$i]['id_name']?></td>
+		<td><?=$Equipment[$i]['group_name']?></td>
+		<td><?=$Equipment[$i]['isCheckedOut']?></td>
+		<td><?=$Equipment[$i]['user_id']?></td>
+		<td><?=$Equipment[$i]['user_name']?></td>
+		<td><?=$Equipment[$i]['time']?></td>
+	</tr> 
+	<?php endfor;?>
+	</table>
+  </div>
+</div>
+</body>
