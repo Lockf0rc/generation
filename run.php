@@ -22,10 +22,11 @@ date_default_timezone_set('America/Los_Angeles');
 	$user_id=$_COOKIE['user_id'];
    $user_name=$_COOKIE['user_name'];
    }
-$object =new api('');
-$object->query="SELECT DISTINCT `Manufacture` FROM `Products`";
+
+$query="SELECT DISTINCT `Manufacture` FROM `Products`";
+$object =new api($query);
 $Manufactures=$object->getResults();
-print_r($Manufactures);
+
 ?>
 <style>
 
