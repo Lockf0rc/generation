@@ -60,7 +60,7 @@ print_r($Manufactures);
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Contact</a></li>
-            <li class="active"><a href="#"><i class="fa fa-caret-square-o-up fa-3x" aria-hidden="true"></i> <span class="sr-only">(current)</span></a></li>
+            <li class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"><a href="#"><i class="fa fa-caret-square-o-up fa-3x" aria-hidden="true"></i> <span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
  </nav>  
