@@ -13,7 +13,7 @@ if((isset($_COOKIE['user_name'])&&isset($_COOKIE['user_id']))||isset($_SESSION['
     die();
 }
 include_once 'dependency/registry.php';
-
+include_once 'api/load.php';
 date_default_timezone_set('America/Los_Angeles');
    if(isset($_SESSION['is_admin_login'])){
 	  $user_id='0000';
@@ -22,6 +22,10 @@ date_default_timezone_set('America/Los_Angeles');
 	$user_id=$_COOKIE['user_id'];
    $user_name=$_COOKIE['user_name'];
    }
+$object =new api('');
+$object->query="SELECT DISTINCT `Manufacture` FROM `Products`";
+$object->runQuery();
+$Manufactures=$object->getResults();
 ?>
 <style>
 
@@ -47,9 +51,9 @@ date_default_timezone_set('America/Los_Angeles');
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Equipment<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">ITEM1</a></li>
-                <li><a href="#">ITEM2</a></li>
-                <li><a href="#">ITEM3</a></li>
+		  <?php foreach ($Manucatures as $m): ?>    
+                <li><a href="#<?=$m?>"><?=$m?></a></li>
+               <?php endforeach;?>
               </ul>
             </li>
           </ul>
