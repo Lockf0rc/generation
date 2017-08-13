@@ -34,14 +34,6 @@ date_default_timezone_set('America/Los_Angeles');
 	  <ul class="nav navbar-nav">
 	    <li class="active"><a href="delete_cookie.php"><i class="fa fa-user-o" aria-hidden="true"></i><?=$user_name?>&nbsp;<i class="glyphicon glyphicon-log-out">LOG-OUT</i></a></li>
 	    <li><a href="run.php"><i class="glyphicon glyphicon-list-alt">CheckoutEquipment</i></a></li>
-	    <li class="dropdown">
-	      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Equipment<span class="caret"></span></a>
-	      <ul class="dropdown-menu">
-		<li><a href="#">ITEM1</a></li>
-		<li><a href="#">ITEM2</a></li>
-		<li><a href="#">ITEM3</a></li>
-	      </ul>
-	    </li>
 	  </ul>
 	  <ul class="nav navbar-nav navbar-right">
 	    <li><a href="#">Contact</a></li>

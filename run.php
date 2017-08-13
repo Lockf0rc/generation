@@ -22,10 +22,33 @@ date_default_timezone_set('America/Los_Angeles');
 	$user_id=$_COOKIE['user_id'];
    $user_name=$_COOKIE['user_name'];
    }
+///////
+$get=function($query){
+$query=urlencode($query);
+$path="http://68.116.41.126:314/api/load.php?query=$query";
 
+$json = file_get_contents($path);
+return json_decode($json,true);
+};
+////////
 $query="SELECT DISTINCT `Manufacture` FROM `Products`";
 $object =new api($query);
 $Manufactures=$object->getResults();
+$object->setQuery("SELECT DISTINCT `Catagory` FROM `Products`");
+$Catagorys=$object->getResults();
+
+
+$Submenu=array();
+
+
+	foreach($Manufactures as $i=>$m){
+		$WHERE="SELECT DISTINCT `Catagory` FROM `Products` WHERE Manufacture='{$m['Manufacture']}'";
+	
+	$menu[]=$get($WHERE);
+	}
+
+
+print_r($Submenu);
 
 ?>
 <style>
@@ -42,25 +65,43 @@ $Manufactures=$object->getResults();
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">Generation<span class="sub-brand">&nbsp;&copy;2017</a>
+	
+      	<a class="navbar-brand" href="#">Generation<span class="sub-brand">&nbsp;&copy;2017</a>
     </div>
 	
 	<div class="navbar-collapse collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="delete_cookie.php"><i class="fa fa-user-o" aria-hidden="true"></i><?=$user_name?>&nbsp;<i class="glyphicon glyphicon-log-out">LOG-OUT</i></a></li>
-            <li><a href="checkin.php"><i class="glyphicon glyphicon-list-alt">ItemsCheckedOut</i></a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Equipment<span class="caret"></span></a>
+            <li><a class="btn btn-block" href="delete_cookie.php"><i class="glyphicon glyphicon-log-out">LogOut</i></a><li>
+            <li><a class="btn btn-block" href="checkin.php"><i class="fa fa-user-o" aria-hidden="true"><?=$user_name?>&nbsp;</i><i class="glyphicon glyphicon-list-alt">ItemsCheckedOut</i></a></li>
+            <li class="dropdown btn btn btn-sm">
+              <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button">Equipment<span class="caret"></span></a>
               <ul class="dropdown-menu">
 		  <?php foreach ($Manufactures as $i=>$m): ?>    
-                <li><a href="<?="{$_SERVER['PHP_SELF']}?m={$m['Manufacture']}"?>"><?=$m['Manufacture']?></a></li>
+                <li><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=SELECT * From `Products` WHERE Manufacture='{$m['Manufacture']}'"?>"><?=$m['Manufacture']?></a></li>
+					<ul>	
+					<?php foreach($menu[$i] as $c ):?><!-- nested foreach-->
+
+				 		  
+				                <li><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=Select * From `Products` WHERE Manufacture='{$m['Manufacture']}' AND Catagory='{$c['Catagory']}' "?>"><?=$c['Catagory']?></a></li>
+				              
+					<?php endforeach;?><!-- nested foreach-->
+					</ul>  	
+
+          <?php endforeach;?>
+              </ul><!--/ul.dropdown-menu -->
+            </li><!--/ li.dropdown btn btn btn-sm -->
+	   <li class="dropdown btn btn btn-sm">
+              <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button">Catagory<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+ 		<?php foreach ($Catagorys as $i=>$c): ?>    
+                <li><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=Select * From `Products` WHERE Catagory='{$c['Catagory']}' "?>"><?=$c['Catagory']?></a></li>
                <?php endforeach;?>
-              </ul>
-            </li>
+	      </ul>
+	  </li>
+
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Contact</a></li>
-            <li class="active"><a href="#"><i class="fa fa-caret-square-o-up fa-3x" aria-hidden="true"></i> <span class="sr-only">(current)</span></a></li>
+           <li class="active"><a href="#"><i class="fa fa-caret-square-o-up fa-3x" aria-hidden="true"></i> <span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
  </nav>  
@@ -112,7 +153,18 @@ load_equipment via jquery
 </script>
 <script type="text/javascript"> 
  $(document).ready(function(){
-$('#accordion').load("data/load_equipment.php");
+	
+/* $.get('api/load.php?query=SELECT * FROM `Products`', function(data) {
+			$.each(data,function(){
+			alert(this.ItemName);
+			});
+                    
+                }, "json");
+
+*/	
+
+$('#accordion').load("data/load_equipment.php?<?=$_SERVER['QUERY_STRING']?>");
+alert('<?=$_SERVER['QUERY_STRING'];?>');
  });
  $("form").submit(function(){
 	 $('#accordion').load('data/load_equipment.php');
