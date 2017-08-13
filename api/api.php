@@ -14,6 +14,7 @@ private $apiResults='DEFALT';
     }
 #	@return string
     public function getJason(){
+	$this->runQuery();
         $jason=json_encode($this->apiResults);
         return $jason; 
         
