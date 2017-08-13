@@ -14,6 +14,7 @@ if((isset($_COOKIE['user_name'])&&isset($_COOKIE['user_id']))||isset($_SESSION['
 }
 include_once 'dependency/registry.php';
 include_once 'api/api.php';
+include_once 'api/PhpStringShortender.php'
 date_default_timezone_set('America/Los_Angeles');
    if(isset($_SESSION['is_admin_login'])){
 	  $user_id='0000';
@@ -24,7 +25,7 @@ date_default_timezone_set('America/Los_Angeles');
    }
 ///////
 $get=function($query){
-$query=urlencode($query);
+$query=base64_encode($query);
 $path="http://68.116.41.126:314/api/load.php?query=$query";
 
 $json = file_get_contents($path);
@@ -74,15 +75,17 @@ print_r($Submenu);
             <li><a class="btn btn-block" href="delete_cookie.php"><i class="glyphicon glyphicon-log-out">LogOut</i></a><li>
             <li><a class="btn btn-block" href="checkin.php"><i class="fa fa-user-o" aria-hidden="true"><?=$user_name?>&nbsp;</i><i class="glyphicon glyphicon-list-alt">ItemsCheckedOut</i></a></li>
             <li class="dropdown btn btn btn-sm">
-              <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button">Equipment<span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button">Select Equipment<span class="caret"></span></a>
               <ul class="dropdown-menu">
-		  <?php foreach ($Manufactures as $i=>$m): ?>    
-                <li><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=SELECT * From `Products` WHERE Manufacture='{$m['Manufacture']}'"?>"><?=$m['Manufacture']?></a></li>
+		  <?php foreach ($Manufactures as $i=>$m): ?>
+					<?php $q1=base64_encode("SELECT * From `Products` WHERE Manufacture='{$m['Manufacture']}'"); ?>   
+                <li><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=$q1"?>"><?=$m['Manufacture']?></a></li>
 					<ul>	
 					<?php foreach($menu[$i] as $c ):?><!-- nested foreach-->
 
-				 		  
-				                <li><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=Select * From `Products` WHERE Manufacture='{$m['Manufacture']}' AND Catagory='{$c['Catagory']}' "?>"><?=$c['Catagory']?></a></li>
+				 		  <?php $q2=base64_encode("Select * From `Products` WHERE Manufacture='{$m['Manufacture']}' AND Catagory='{$c['Catagory']}'");
+							 ?>
+				                <li><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=$q2"?>"><?=$c['Catagory']?></a></li>
 				              
 					<?php endforeach;?><!-- nested foreach-->
 					</ul>  	

@@ -1,5 +1,5 @@
 <?php
-#$Path_to_bin = dirname($_SERVER["DOCUMENT_ROOT"])."/generationapps_bin";
+
 $root=dirname(dirname(dirname(dirname(__FILE__))));
 $Path_to_bin = $root."/generationapps_bin";
 

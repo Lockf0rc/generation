@@ -1,5 +1,6 @@
 <?php
 include_once '../dependency/dba.php';
+include_once 'PhpStringShortener.php';
 class api{
 //@type string    
 
@@ -39,4 +40,5 @@ private $apiResults='DEFALT';
         }
     }
   }
+
 ?>
