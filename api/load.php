@@ -3,28 +3,19 @@ include_once '../dependency/dba.php';
 include_once 'api.php';
 include_once 'PhpStringShortener.php';
 
-function base62_decode($hash){
+$hash = isset($_GET['hash']) ? $_GET['hash'] : null;
+
+$query = isset($_GET['query']) ? $_GET['query'] : null;
+
+$clientQuery =function($q){
 	
-	$phpSS = new PhpStringShortener();
-	#print_r($phpSS->getStringByHash($hash));
-            $encoded64_string = $phpSS->getStringByHash($hash);
-	return $encoded64_string;
-}
-function base62_encode($string){
-            $phpSS = new PhpStringShortener();
-            $hash = $phpSS->addHashByString($string);
-	return $hash;
-}
-
-$client =function(){
-$query =base64_decode(base62_decode($_GET['query']));
-echo $query;
-
-$object = new api($query);
-header('Content-type: application/json');
-print_r($object->getJason());
+	$query =urldecode(base62_decode($q));
+        $object = new api($query);
+        header('Content-type: application/json');
+        echo	$object->getJason();
 };
 
-$client();
-
+if ($query !== null) {
+	$clientQuery($query);
+}
 ?>

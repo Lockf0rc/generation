@@ -41,4 +41,18 @@ private $apiResults='DEFALT';
     }
   }
 
+function base62_decode($hash){
+	
+	$phpSS = new PhpStringShortener();
+	#print_r($phpSS->getStringByHash($hash));
+            $encoded64_string = $phpSS->getStringByHash($hash);
+	return $encoded64_string;
+}
+function base62_encode($string){
+            $phpSS = new PhpStringShortener();
+            $hash = $phpSS->addHashByString($string);
+	return $hash;
+}
+
+
 ?>
