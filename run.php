@@ -67,13 +67,19 @@ $Catagorys=getCatagory();
 
 ?>
 <style>
+.big{
 
+  padding: 20.5px 15px;
+  font-size: 17px;
+  
+  height: 64px;
+}
 </style>
 </head>
 <body>
 <div class="container content">	
-<nav class="navbar  navbar-fixed-top">
-  <div class="container-fluid">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class=" container-fluid">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
@@ -85,34 +91,34 @@ $Catagorys=getCatagory();
     </div>
 	<div id="myNavbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a class="nav-link" href="delete_cookie.php"><i class="glyphicon glyphicon-log-out">LogOut</i></a><li>
-            <li><a class="nav-link" href="checkin.php"><i class="fa fa-user-o" aria-hidden="true"><?=$user_name;?>&nbsp;</i><i class="glyphicon glyphicon-list-alt">ItemsCheckedOut</i></a></li>
-            <li class="dropdown ">
-              <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button">Select Equipment<span class="caret"></span></a>
-              <ul class="dropdown-menu">
+            <!--li><a class="nav-link" href="delete_cookie.php"><i class="glyphicon glyphicon-log-out">LogOut</i></a><li-->
+            <!--li><a class="nav-link" href="checkin.php"><i class="fa fa-user-o" aria-hidden="true"><?=$user_name;?>&nbsp;</i><i class="glyphicon glyphicon-list-alt">ItemsCheckedOut</i></a></li-->
+            <li  class="dropdown ">
+              <a href="#" class="dropdown-toggle big" data-toggle="dropdown" role="button">Select Equipment<span class="caret"></span></a>
+              <ul style="" class="dropdown-menu ">
 		  <?php foreach ($Manufactures as $i=>$m): ;?><?php $q1=base62_encode("SELECT * From `Products` WHERE Manufacture='{$m['Manufacture']}'");?>   
-                <li><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=$q1"?>"><?=$m['Manufacture'];?></a></li>
-					<ul class="sub-menu">	
+                <li><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=$q1"?>"><h5><?=$m['Manufacture'];?></h5></a></li>
+					<ul >	
 					<?php foreach($menu[$i] as $c ):?><!-- nested 1foreach --><?php $q2=base62_encode("Select * From `Products` WHERE Manufacture='{$m['Manufacture']}' AND Catagory='{$c['Catagory']}'");?>
-				         <li><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=$q2";?>"><?=$c['Catagory'];?></a></li>				              
+				         <li class="list-group-item "><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=$q2";?>"><?=$c['Catagory'];?></a></li>				              
 					<?php endforeach;?><!-- (nested 1)end foreach Catagory in Manufacture -->
 					</ul> 
          	 <?php endforeach;?><!--end foreach Manufacture -->
               </ul><!--ul.dropdown-menu -->
             </li><!--li.dropdown -->
-	   <li class="dropdown ">
-              <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button">Catagory<span class="caret"></span></a>
-              <ul class="dropdown-menu">
+	   <li class="dropdown">
+              <a href="#" class="dropdown-toggle big " data-toggle="dropdown" role="button">Catagory<span class="caret"></span></a>
+              <ul class="dropdown-menu ">
  		<?php foreach ($Catagorys as $i=>$c): ;?><?php $q3=base62_encode("Select * From `Products` WHERE Catagory='{$c['Catagory']}'");?>  	
-                <li><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=$q3";?>"><?=$c['Catagory'];?></a></li>
+                <li><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=$q3";?>"><h5><?=$c['Catagory'];?></h5></a></li>
                <?php endforeach;?><!--end foreach Catagory-->
 	      </ul><!--ul.dropdown-menu-->
 	  </li><!--li.dropdown -->
 
-          </ul><!--.dropdown-menu-->
-          <ul class="nav navbar-nav navbar-right">
+          </ul><!--ul.dropdown-menu-->
+          <!--ul class="nav navbar-nav navbar-right">
            <li class="active"><a href="#"><i class="fa fa-caret-square-o-up fa-3x" aria-hidden="true"></i> <span class="sr-only">(current)</span></a></li>
-          </ul><!--ul.nav navbar-nav navbar-right-->
+          </ul>--><!--ul.nav navbar-nav navbar-right-->
         </div><!--div#myNavbar-->
  </nav><!--nav.navbar navbar-inverse navbar-fixed-top--> 
 

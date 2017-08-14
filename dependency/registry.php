@@ -9,11 +9,13 @@ Registry::set('LINK',
     '
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      <link rel="stylesheet" href="css/x/switch/css/style.css">
-     <link rel="stylesheet" href="css/vendor/bootswatch/paper-style.css">	
+     <!--link rel="stylesheet" href="css/vendor/bootswatch/paper-style.css"-->
+     <!-- jqueryui -->
+     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>	
 '
 );
-#Registry::set('BOOTSTRAPCDN','<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css">');
-Registry::set('BOOTSTRAPCDN','');
+Registry::set('BOOTSTRAPCDN','<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css">');
+#Registry::set('BOOTSTRAPCDN','');
 
 Registry::set('STYLE','
 *{  body {
