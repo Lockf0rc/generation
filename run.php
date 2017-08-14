@@ -170,7 +170,7 @@ $Catagorys=getCatagory();
                 }, "json");
 	
 */
-$('#accordion').load("data/load_equipment.php?<?=$_SERVER['QUERY_STRING'];?>");
+$('#PRODUCTS').load("data/load_equipment.php?<?=$_SERVER['QUERY_STRING'];?>");
 //alert('<?=$_SERVER['QUERY_STRING'];?>');
  });
  $("form").submit(function(){

@@ -13,6 +13,8 @@ Registry::set('LINK',
 '
 );
 #Registry::set('BOOTSTRAPCDN','<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css">');
+Registry::set('BOOTSTRAPCDN','');
+
 Registry::set('STYLE','
 *{  body {
       position: relative;
