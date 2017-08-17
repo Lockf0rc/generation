@@ -4,7 +4,7 @@
 $query=$_GET['query'];
 
 $query=urlencode($query);
-$path="http://68.116.41.126:314/api/load.php?query=$query";
+$path="http://68.116.41.126/api/load.php?query=$query";
 
 $json = file_get_contents($path);
 $Products=json_decode($json,true);

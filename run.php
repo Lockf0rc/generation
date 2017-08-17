@@ -25,7 +25,7 @@ $isUserAdmin=function(){
 };
 $get=function($query){
 	$query=base62_encode($query);
-	$path="http://68.116.41.126:314/api/load.php?query=$query";
+	$path="http://68.116.41.126/api/load.php?query=$query";
 	
 	$json = file_get_contents($path);
 	return json_decode($json,true);
