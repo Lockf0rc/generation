@@ -25,7 +25,7 @@ $isUserAdmin=function(){
 };
 $get=function($query){
 	$query=base62_encode($query);
-	$path="http://68.116.41.126/api/load.php?query=$query";
+	$path="http://68.116.41.126:314/api/load.php?query=$query";
 	
 	$json = file_get_contents($path);
 	return json_decode($json,true);
@@ -91,9 +91,8 @@ $Catagorys=getCatagory();
     </div>
 	<div id="myNavbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <!--li><a class="nav-link" href="delete_cookie.php"><i class="glyphicon glyphicon-log-out">LogOut</i></a><li-->
-            <!--li><a class="nav-link" href="checkin.php"><i class="fa fa-user-o" aria-hidden="true"><?=$user_name;?>&nbsp;</i><i class="glyphicon glyphicon-list-alt">ItemsCheckedOut</i></a></li-->
-            <li  class="dropdown ">
+           
+             <li  class="dropdown ">
               <a href="#" class="dropdown-toggle big" data-toggle="dropdown" role="button">Select Equipment<span class="caret"></span></a>
               <ul style="" class="dropdown-menu ">
 		  <?php foreach ($Manufactures as $i=>$m): ;?><?php $q1=base62_encode("SELECT * From `Products` WHERE Manufacture='{$m['Manufacture']}'");?>   
@@ -116,13 +115,15 @@ $Catagorys=getCatagory();
 	  </li><!--li.dropdown -->
 
           </ul><!--ul.dropdown-menu-->
-          <!--ul class="nav navbar-nav navbar-right">
-           <li class="active"><a href="#"><i class="fa fa-caret-square-o-up fa-3x" aria-hidden="true"></i> <span class="sr-only">(current)</span></a></li>
-          </ul>--><!--ul.nav navbar-nav navbar-right-->
+          <ul class="nav navbar-nav navbar-right">
+           <li class="active"><a class="nav-link" href="checkin.php"><i class="fa fa-user-o" aria-hidden="true"><?=$user_name;?>&nbsp;</i></a></li>
+          </ul><!--ul.nav navbar-nav navbar-right-->
         </div><!--div#myNavbar-->
  </nav><!--nav.navbar navbar-inverse navbar-fixed-top--> 
 
  <div class="page-space">
+	<br>
+	<br>
      <?php
      $jb= new \bootstrap\jumbotron('<h1>Equipment Checkout</h1>');
      echo $jb;

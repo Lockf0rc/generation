@@ -14,9 +14,8 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST')&&(isset($_POST['item']))){
 	$dateStamp=date("Y-m-d h:i A");	
 	$itemsChecked= implode("','", $_POST['item']);$itemsCheckedOut= "('".$itemsChecked."')";   
 	unset($dbAdapter);unset($dbc);unset($db);$Results=array();
-	$query= "UPDATE equipment SET isCheckedOut=1,user_id='$user_id',user_name='$user_name' ,time='$dateStamp' WHERE id_name IN $itemsCheckedOut";
-	#debug# 
-	echo $query;
+	$query= "UPDATE ClientState SET isCheckedOut=1,user_id='$user_id',user_name='$user_name' ,time='$dateStamp' WHERE EQ_ID IN $itemsCheckedOut";
+	#debug# echo $query;
 	$dbAdapter= @new dbAdapter('lockf0rc_generation',$query,$Results);
 ######################################################################
     $filename = 'history.csv';

@@ -13,9 +13,9 @@ include_once '../dependency/dba.php';
 ?>
 <?php
 #ESTABLISH DATABASE QUERY FROM TABLE
-$query= "SELECT * FROM `equipment`";
+$sql = "SELECT * FROM `Products` INNER JOIN `ClientState` ON `Products`.`EQ_ID` = `ClientState`.`EQ_ID`";
 $Equipment=array();
-$Adapter= @new dbAdapter('lockf0rc_generation',$query,$Equipment);
+$Adapter= @new dbAdapter('lockf0rc_generation',$sql,$Equipment);
 $Equipment=$Adapter->getResults();
 #debug print_r($Equipment);
 ?>
@@ -34,13 +34,13 @@ $Equipment=$Adapter->getResults();
 	<div>
 	 <div class="panel-body">
 	 <ul class="list-group">
-			<h4><?=$Equipment[$i]['group_name'];?>
+			<h4><?=$Equipment[$i]['Catagory'];?>
 					  <li class="list-group-item">
 						<div class="row">
 			<div class="col-xs-4 col-md-4">
 			<div class="row">
 			<div class="switch">  
-			<input name="item[]" id="cmn-toggle-<?=$i?>" class="cmn-toggle cmn-toggle-round" value="<?=$Equipment[$i]['id_name'];?>" type=checkbox <?=(!$Equipment[$i]['isCheckedOut'])?"checked disabled":"unchecked";?>>
+			<input name="item[]" id="cmn-toggle-<?=$i?>" class="cmn-toggle cmn-toggle-round" value="<?=$Equipment[$i]['EQ_ID'];?>" type=checkbox <?=(!$Equipment[$i]['isCheckedOut'])?"checked disabled":"unchecked";?>>
 			<label for="cmn-toggle-<?=$i?>"></label>
 			</div><!-- /switch -->
 			</div><!-- /row -->	
@@ -50,10 +50,10 @@ $Equipment=$Adapter->getResults();
 				<div class="row">
 						
 						<a  class="thumbnail">
-						<img src="<?=$Equipment[$i]['image_link'];?>" alt="<?=$Equipment[$i]['id_name']?>" >
+						<img src="<?=$Equipment[$i]['Image_url'];?>" alt="<?=$Equipment[$i]['EQ_ID']?>" >
 					   </a>
 					 
-				<?=$Equipment[$i]['description'];?>
+				<?=$Equipment[$i]['Description'];?>
 				</div><!-- /row -->	 
 			</div>
 			</div><!-- /row -->	

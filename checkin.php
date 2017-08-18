@@ -14,10 +14,21 @@ include_once 'dependency/registry.php';
 
 date_default_timezone_set('America/Los_Angeles');
 ?>
+<style>
+.big{
 
+  padding: 20.5px 15px;
+  font-size: 17px;
+  
+  height: 64px;
+}
+</style>
+</head>
 
 <body>
 <div class="container content">
+<br>
+<br>
  <div class="page-space">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	  <div class="container-fluid">
@@ -32,12 +43,12 @@ date_default_timezone_set('America/Los_Angeles');
 
 	<div class="navbar-collapse collapse" id="myNavbar">
 	  <ul class="nav navbar-nav">
-	    <li class="active"><a href="delete_cookie.php"><i class="fa fa-user-o" aria-hidden="true"></i><?=$user_name?>&nbsp;<i class="glyphicon glyphicon-log-out">LOG-OUT</i></a></li>
-	    <li><a href="run.php"><i class="glyphicon glyphicon-list-alt">CheckoutEquipment</i></a></li>
+	    
+	    <li><a href="run.php"><i class="glyphicon glyphicon-list-alt big">CheckoutEquipment</i></a></li>
 	  </ul>
 	  <ul class="nav navbar-nav navbar-right">
 	    <li><a href="#">Contact</a></li>
-	    <li class="active"><a href="#"><i class="fa fa-caret-square-o-up fa-3x" aria-hidden="true"></i> <span class="sr-only">(current)</span></a></li>
+	    <li class="active"><a href="delete_cookie.php"><i class="fa fa-user-o" aria-hidden="true"><?=$user_name?>&nbsp;</i><i class="fa fa-power-off ">LOG-OUT</i></a></li>
 	  </ul>
 	</div><!--/.nav-collapse -->
 	</nav>  
