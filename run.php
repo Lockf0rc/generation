@@ -83,7 +83,7 @@ color:white;
     max-height: 200px;
     overflow-x: hidden;
 }
-li.menu-item > a{color:red;}
+li.menu-item > a{font-size: 17px;color:red;}
 </style>
 </head>
 <body>
@@ -99,7 +99,7 @@ li.menu-item > a{color:red;}
 	
       	<a class="navbar-brand" href="#">Generation<span class="sub-brand">&nbsp;&copy;2017</a>
     </div>
-	<div id="myNavbar" class="navbar-collapse collapse">
+	<div id="myNavbar" class="navbar-collapse collapse ">
           <ul class="nav navbar-nav">
              <li  class="menu-item dropdown ">
               <a href="#" class="dropdown-toggle big" data-toggle="dropdown" role="button">Select Equipment<span class="caret"></span></a>
@@ -209,12 +209,12 @@ $pieces = explode("/", $qs_arr['query']);
 
 //https://www.bootply.com/D2wTP855IG
  $('#PRODUCTS').load("data/load_equipment.php?<?=$_SERVER['QUERY_STRING'];?>");
-//alert('<?=$_SERVER['QUERY_STRING'];?>');
+ 
  });
- $("form").submit(function(){
-	 $('#PRODUCTS').load('data/load_equipment.php');
- });
+
+ $("form").submit(function(){ $('#PRODUCTS').load('data/load_equipment.php'); });
    
+
  
 
 </script>
