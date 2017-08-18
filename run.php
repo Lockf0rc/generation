@@ -74,6 +74,9 @@ $Catagorys=getCatagory();
   
   height: 64px;
 }
+.navbar-inverse{
+color:rgb(249, 183, 7);
+}
 </style>
 </head>
 <body>
