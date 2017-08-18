@@ -78,6 +78,11 @@ color:white;
   
   height: 64px;
 }
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
 </style>
 </head>
 <body>
@@ -98,12 +103,12 @@ color:white;
            
              <li  class="dropdown ">
               <a href="#" class="dropdown-toggle big" data-toggle="dropdown" role="button">Select Equipment<span class="caret"></span></a>
-              <ul style="" class="dropdown-menu ">
+              <ul style="" class="dropdown-menu scrollable-menu">
 		  <?php foreach ($Manufactures as $i=>$m): ;?><?php $q1=base62_encode("SELECT * From `Products` WHERE Manufacture='{$m['Manufacture']}'");?>   
-                <li><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=$q1"?>"><h5><?=$m['Manufacture'];?></h5></a></li>
+                <li><a class="big" href="<?="{$_SERVER['PHP_SELF']}?query=$q1"?>"><h5><?=$m['Manufacture'];?></h5></a></li>
 					<ul >	
 					<?php foreach($menu[$i] as $c ):?><!-- nested 1foreach --><?php $q2=base62_encode("Select * From `Products` WHERE Manufacture='{$m['Manufacture']}' AND Catagory='{$c['Catagory']}'");?>
-				         <li class="list-group-item "><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=$q2";?>"><?=$c['Catagory'];?></a></li>				              
+				         <li><a class="nav-link big" href="<?="{$_SERVER['PHP_SELF']}?query=$q2";?>"><?=$c['Catagory'];?></a></li>				              
 					<?php endforeach;?><!-- (nested 1)end foreach Catagory in Manufacture -->
 					</ul> 
          	 <?php endforeach;?><!--end foreach Manufacture -->
@@ -181,15 +186,20 @@ color:white;
                 }, "json");
 	
 */
-$('#PRODUCTS').load("data/load_equipment.php?<?=$_SERVER['QUERY_STRING'];?>");
+ $('#PRODUCTS').load("data/load_equipment.php?<?=$_SERVER['QUERY_STRING'];?>");
 //alert('<?=$_SERVER['QUERY_STRING'];?>');
  });
  $("form").submit(function(){
 	 $('#PRODUCTS').load('data/load_equipment.php');
-   
-	
  });
-
+   
+ $('.dropdown-submenu>a').unbind('click').click(function(e){
+ $(this).next('ul').toggle();
+		e.stopPropagation();
+		e.preventDefault();
+ });	
+});
+//https://www.bootply.com/D2wTP855IG
 
 </script>
 <html>
