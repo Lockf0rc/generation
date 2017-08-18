@@ -83,6 +83,7 @@ color:white;
     max-height: 200px;
     overflow-x: hidden;
 }
+li.menu-item > a{color:red;}
 </style>
 </head>
 <body>
@@ -100,32 +101,31 @@ color:white;
     </div>
 	<div id="myNavbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-           
-             <li  class="dropdown ">
+             <li  class="menu-item dropdown ">
               <a href="#" class="dropdown-toggle big" data-toggle="dropdown" role="button">Select Equipment<span class="caret"></span></a>
               <ul style="" class="dropdown-menu scrollable-menu">
 		  <?php foreach ($Manufactures as $i=>$m): ;?><?php $q1=base62_encode("SELECT * From `Products` WHERE Manufacture='{$m['Manufacture']}'");?>   
-                <li><a class="big" href="<?="{$_SERVER['PHP_SELF']}?query=$q1"?>"><h5><?=$m['Manufacture'];?></h5></a></li>
+                <li class="menu-item"><a  href="<?="{$_SERVER['PHP_SELF']}?query=$q1"?>"><h5><?=$m['Manufacture'];?></h5></a></li>
 					<ul >	
 					<?php foreach($menu[$i] as $c ):?><!-- nested 1foreach --><?php $q2=base62_encode("Select * From `Products` WHERE Manufacture='{$m['Manufacture']}' AND Catagory='{$c['Catagory']}'");?>
-				         <li><a class="nav-link big" href="<?="{$_SERVER['PHP_SELF']}?query=$q2";?>"><?=$c['Catagory'];?></a></li>				              
+				         <li class="menu-item"><a class="nav-link big" href="<?="{$_SERVER['PHP_SELF']}?query=$q2";?>"><?=$m['Manufacture'].'/'.$c['Catagory'];?></a></li>				              
 					<?php endforeach;?><!-- (nested 1)end foreach Catagory in Manufacture -->
 					</ul> 
          	 <?php endforeach;?><!--end foreach Manufacture -->
               </ul><!--ul.dropdown-menu -->
             </li><!--li.dropdown -->
-	   <li class="dropdown">
+	   <li class="menu-item dropdown">
               <a href="#" class="dropdown-toggle big " data-toggle="dropdown" role="button">Catagory<span class="caret"></span></a>
               <ul class="dropdown-menu ">
  		<?php foreach ($Catagorys as $i=>$c): ;?><?php $q3=base62_encode("Select * From `Products` WHERE Catagory='{$c['Catagory']}'");?>  	
-                <li><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=$q3";?>"><h5><?=$c['Catagory'];?></h5></a></li>
+                <li class="menu-item"><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=$q3";?>"><h5><?=$c['Catagory'];?></h5></a></li>
                <?php endforeach;?><!--end foreach Catagory-->
 	      </ul><!--ul.dropdown-menu-->
 	  </li><!--li.dropdown -->
 
           </ul><!--ul.dropdown-menu-->
           <ul class="nav navbar-nav navbar-right">
-           <li class="active"><a class="nav-link" href="checkin.php"><i class="fa fa-user-o" aria-hidden="true"><?=$user_name;?>&nbsp;</i></a></li>
+           <li class="menu-item active"><a class="nav-link" href="checkin.php"><i class="fa fa-user-o" aria-hidden="true"><?=$user_name;?>&nbsp;</i></a></li>
           </ul><!--ul.nav navbar-nav navbar-right-->
         </div><!--div#myNavbar-->
  </nav><!--nav.navbar navbar-inverse navbar-fixed-top--> 
@@ -137,6 +137,25 @@ color:white;
      $jb= new \bootstrap\jumbotron('<h1>Equipment Checkout</h1>');
      echo $jb;
  ?>
+
+<?php
+$qs_arr=array();
+parse_str($_SERVER['QUERY_STRING'], $qs_arr);
+#DEBUG print_r($qs_arr);
+$pieces = explode("/", $qs_arr['query']);
+#DEBUG echo $pieces[0]; // piece1
+#DEBUG echo $pieces[1]; // piece2
+
+?>
+    <ul class="breadcrumb">
+
+        <li><a href="/">Home</a></li>
+        <li><a href="<?="{$_SERVER['PHP_SELF']}?query=$pieces[0]/All";?>"><?=$pieces[0];?></a></li>
+	<li><a href="#"><?=$pieces[1];?></a></li>
+        
+    </ul>
+
+
 <div class="page-space">
 <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>" >
 <div class="panel-group" id="PRODUCTS" role="tablist" aria-multiselectable="true">	
@@ -186,6 +205,9 @@ color:white;
                 }, "json");
 	
 */
+
+
+//https://www.bootply.com/D2wTP855IG
  $('#PRODUCTS').load("data/load_equipment.php?<?=$_SERVER['QUERY_STRING'];?>");
 //alert('<?=$_SERVER['QUERY_STRING'];?>');
  });
@@ -193,13 +215,7 @@ color:white;
 	 $('#PRODUCTS').load('data/load_equipment.php');
  });
    
- $('.dropdown-submenu>a').unbind('click').click(function(e){
- $(this).next('ul').toggle();
-		e.stopPropagation();
-		e.preventDefault();
- });	
-});
-//https://www.bootply.com/D2wTP855IG
+ 
 
 </script>
 <html>
