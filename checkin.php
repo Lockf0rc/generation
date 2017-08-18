@@ -15,6 +15,10 @@ include_once 'dependency/registry.php';
 date_default_timezone_set('America/Los_Angeles');
 ?>
 <style>
+.jumbotron{
+background-color:rgb(39, 39, 39);
+color:white;
+}
 .big{
 
   padding: 20.5px 15px;
@@ -26,10 +30,6 @@ date_default_timezone_set('America/Los_Angeles');
 </head>
 
 <body>
-<div class="container content">
-<br>
-<br>
- <div class="page-space">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
@@ -51,12 +51,16 @@ date_default_timezone_set('America/Los_Angeles');
 	    <li class="active"><a href="delete_cookie.php"><i class="fa fa-user-o" aria-hidden="true"><?=$user_name?>&nbsp;</i><i class="fa fa-power-off ">LOG-OUT</i></a></li>
 	  </ul>
 	</div><!--/.nav-collapse -->
-	</nav>  
+	</nav>
+
+<br>
+<br>  
 <?php
      $jb= new \bootstrap\jumbotron('<h1>YOUR ITEMS</h1>');
      echo $jb;
  ?>
 
+ <div class="page-space">
 <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>" >
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">	
 <!-- LOAD_EQUIPMENT

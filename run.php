@@ -67,6 +67,10 @@ $Catagorys=getCatagory();
 
 ?>
 <style>
+.jumbotron{
+background-color:rgb(39, 39, 39);
+color:white;
+}
 .big{
 
   padding: 20.5px 15px;
@@ -74,13 +78,10 @@ $Catagorys=getCatagory();
   
   height: 64px;
 }
-.navbar-inverse{
-color:rgb(249, 183, 7);
-}
 </style>
 </head>
 <body>
-<div class="container content">	
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class=" container-fluid">
     <div class="navbar-header">
@@ -124,14 +125,14 @@ color:rgb(249, 183, 7);
         </div><!--div#myNavbar-->
  </nav><!--nav.navbar navbar-inverse navbar-fixed-top--> 
 
- <div class="page-space">
+ 
 	<br>
 	<br>
      <?php
      $jb= new \bootstrap\jumbotron('<h1>Equipment Checkout</h1>');
      echo $jb;
  ?>
-
+<div class="page-space">
 <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>" >
 <div class="panel-group" id="PRODUCTS" role="tablist" aria-multiselectable="true">	
 <!-- LOAD_EQUIPMENT load_equipment via jquery-->	
