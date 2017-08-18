@@ -16,8 +16,8 @@ $Products=json_decode($json,true);
 		<li class="list-group-item" >
 				
 				<span class="switch">
-					<h3><?=$item['ItemName']?></h3>  
-				<input name="item[]" id="cmn-toggle-<?=$i?>" class="cmn-toggle cmn-toggle-round" value="<?=$item['EQ_ID'];?>" type=checkbox >
+					<h3><?=$item['ItemName']?></h3><?=($item['user_name'])?"<span class='label label-default'><i class='fa fa-user-o' >{$item['user_name']}</i></span><br>":'';?>  
+				<input name="item[]" id="cmn-toggle-<?=$i?>" class="cmn-toggle cmn-toggle-round" value="<?=$item['EQ_ID'];?>" type=checkbox <?=($item['isCheckedOut'])?"checked disabled":"unchecked";?> >
 				<label for="cmn-toggle-<?=$i?>"></label>
 					<span for="SN">SN:# <?=$item['SN']?><span>
 					<span for="Identifier">Identifier:<?=$item['Identifier']?><span>
@@ -31,7 +31,7 @@ $Products=json_decode($json,true);
 				</a>
 			<?php endif;?>	
 		
-	 
+	
 			
 		</li>
 	

@@ -104,10 +104,10 @@ li.menu-item > a{font-size: 17px;color:red;}
              <li  class="menu-item dropdown ">
               <a href="#" class="dropdown-toggle big" data-toggle="dropdown" role="button">Select Equipment<span class="caret"></span></a>
               <ul style="" class="dropdown-menu scrollable-menu">
-		  <?php foreach ($Manufactures as $i=>$m): ;?><?php $q1=base62_encode("SELECT * From `Products` WHERE Manufacture='{$m['Manufacture']}'");?>   
+		  <?php foreach ($Manufactures as $i=>$m): ;?><?php $q1=$m['Manufacture'].'/All';?>   
                 <li class="menu-item"><a  href="<?="{$_SERVER['PHP_SELF']}?query=$q1"?>"><h5><?=$m['Manufacture'];?></h5></a></li>
 					<ul >	
-					<?php foreach($menu[$i] as $c ):?><!-- nested 1foreach --><?php $q2=base62_encode("Select * From `Products` WHERE Manufacture='{$m['Manufacture']}' AND Catagory='{$c['Catagory']}'");?>
+					<?php foreach($menu[$i] as $c ):?><!-- nested 1foreach --><?php $q2=$m['Manufacture'].'/'.$c['Catagory'];?>
 				         <li class="menu-item"><a class="nav-link big" href="<?="{$_SERVER['PHP_SELF']}?query=$q2";?>"><?=$m['Manufacture'].'/'.$c['Catagory'];?></a></li>				              
 					<?php endforeach;?><!-- (nested 1)end foreach Catagory in Manufacture -->
 					</ul> 
@@ -117,7 +117,7 @@ li.menu-item > a{font-size: 17px;color:red;}
 	   <li class="menu-item dropdown">
               <a href="#" class="dropdown-toggle big " data-toggle="dropdown" role="button">Catagory<span class="caret"></span></a>
               <ul class="dropdown-menu ">
- 		<?php foreach ($Catagorys as $i=>$c): ;?><?php $q3=base62_encode("Select * From `Products` WHERE Catagory='{$c['Catagory']}'");?>  	
+ 		<?php foreach ($Catagorys as $i=>$c): ;?><?php $q3='All/'.$c['Catagory'];?>  	
                 <li class="menu-item"><a class="nav-link" href="<?="{$_SERVER['PHP_SELF']}?query=$q3";?>"><h5><?=$c['Catagory'];?></h5></a></li>
                <?php endforeach;?><!--end foreach Catagory-->
 	      </ul><!--ul.dropdown-menu-->

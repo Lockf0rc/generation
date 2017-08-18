@@ -47,7 +47,7 @@ color:white;
 	    <li><a href="run.php"><i class="glyphicon glyphicon-list-alt big">CheckoutEquipment</i></a></li>
 	  </ul>
 	  <ul class="nav navbar-nav navbar-right">
-	    <li><a href="#">Contact</a></li>
+	   
 	    <li class="active"><a href="delete_cookie.php"><i class="fa fa-user-o" aria-hidden="true"><?=$user_name?>&nbsp;</i><i class="fa fa-power-off ">LOG-OUT</i></a></li>
 	  </ul>
 	</div><!--/.nav-collapse -->

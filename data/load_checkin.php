@@ -26,41 +26,40 @@ $Equipment=$Adapter->getResults();
 	<div class="panel-heading" role="tab" id="heading" >
 	  <h4 class="panel-title">
 		 <a>
-			Check In Items
+			
 			<span class="label label-default"><i class="fa fa-user-o" ><?=$_COOKIE['user_name'];?></i></span>
+			<?=$Equipment[$i]['ItemName'];?>
 		 </a>
-		</h4>
+		
 	  </div>
 	<div>
 	 <div class="panel-body">
 	 <ul class="list-group">
-			<h4><?=$Equipment[$i]['Catagory'];?>
-					  <li class="list-group-item">
-						<div class="row">
-			<div class="col-xs-4 col-md-4">
-			<div class="row">
+		<li class="list-group-item" >
+			
+					 
+						
+			
 			<div class="switch">  
 			<input name="item[]" id="cmn-toggle-<?=$i?>" class="cmn-toggle cmn-toggle-round" value="<?=$Equipment[$i]['EQ_ID'];?>" type=checkbox <?=(!$Equipment[$i]['isCheckedOut'])?"checked disabled":"unchecked";?>>
 			<label for="cmn-toggle-<?=$i?>"></label>
 			</div><!-- /switch -->
-			</div><!-- /row -->	
-			</div><!-- /col-xs-6 col-md-4 -->	
-			 <div class="col-xs-8 col-md-8">
+			
 				
 				<div class="row">
-						
-						<a  class="thumbnail">
-						<img src="<?=$Equipment[$i]['Image_url'];?>" alt="<?=$Equipment[$i]['EQ_ID']?>" >
-					   </a>
-					 
-				<?=$Equipment[$i]['Description'];?>
-				</div><!-- /row -->	 
-			</div>
-			</div><!-- /row -->	
-			</li>
-		</h4>	
-			</div><!-- /row -->	
-		</ul>
+					<span for="SN">SN:# <?=$Equipment[$i]['SN']?><span>
+					<span for="Identifier">Identifier:<?=$Equipment[$i]['Identifier']?><span>
+					<p>Manufacture: <?=$Equipment[$i]['Manufacture']?><p>
+					<p>Catagory: <?=$Equipment[$i]['Catagory']?><p>
+					<p>Description: <?=$Equipment[$i]['Description'];?></p>	
+			<?php if($Equipment[$i]['Image_url'] !== ""):?>
+				<a  class="thumbnail">
+					<img src="<?=$Equipment[$i]['Image_url'];?>" alt="<?=$Equipment[$i]['EQ_ID']?>" >
+				</a>
+			<?php endif;?>
+		</li><!--li.list-group-->	
+				
+	 </ul>
 	</div><!-- /panel-body -->	
 	</div><!-- /collapesGroupName -->
   	
