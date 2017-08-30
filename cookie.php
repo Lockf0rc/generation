@@ -35,7 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 include_once  'dependency/registry.php';
 
 ?>
+<style>
 
+
+</style>
  <a href="admin/login.php" class="btn btn-default"><button type="button" class="btn btn-primary btn-sm" >Admin Login</button></a>
  <h2>USER LOGIN</h2>
   <form id="myForm" method="post" action="<?php echo $_SERVER['PHP_SELF']?>" >

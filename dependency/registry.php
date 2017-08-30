@@ -11,7 +11,7 @@ Registry::set('LINK',
 	 <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
      <link rel="stylesheet" href="vendor/switch/css/style.css">
      <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css">-->
-     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">		
+     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">		
      <link rel="stylesheet" href="vendor/bootswatch/paper-style.css">
      <!-- jqueryui -->
      	

@@ -25,7 +25,7 @@ unset($db);
 $Results=array();
 $itemsCheckedOut= "('".implode("','",$_POST['item'])."')";
 $query= "UPDATE ClientState SET isCheckedOut=0,user_id='',user_name='',time='' WHERE EQ_ID IN $itemsCheckedOut";
-echo $query;
+##DEBUG echo $query;
 
 $dbAdapter= @new dbAdapter('lockf0rc_generation',$query,$Results);
 ######################################################################
