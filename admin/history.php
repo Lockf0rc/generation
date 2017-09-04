@@ -32,8 +32,8 @@ if (($handle = fopen("../history.csv", "r")) !== FALSE) {
 		  <tr>
 
                          <th>TIME_STAMP</th>
-                	 <th>USER</th>
-			 <th>ITEMS</th>
+                	  <th>ITEMS</th>
+			  <th>USER</th>
 
 		   </tr>
 	   </thead>
