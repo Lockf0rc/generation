@@ -11,7 +11,7 @@ if(empty($_SESSION['is_admin_login'])){
 ?>
 <?php
 #ESTABLISH DATABASE QUERY FROM TABLE
-$query= "SELECT * FROM `equipment`ORDER BY  group_name ASC";
+$query=" SELECT * FROM `Products` p INNER JOIN ClientState s ON p.EQ_ID = s.EQ_ID WHERE s.isCheckedout=1 ORDER BY time DESC, user_name";
 $Equipment=array();
 $Adapter= @new dbAdapter('lockf0rc_generation',$query,$Equipment);
 $Equipment=$Adapter->getResults();
@@ -29,27 +29,34 @@ $Equipment=$Adapter->getResults();
  <div class="page-space">
 
 <div class="jumbotron">
-  <h1>CURRENT DATABASE</h1>
+  <h1>All Items Checkeout</h1>
   </div>
 	<table class="success table table-striped table-condensed table-bordered">
 	   <thead>
 		  <tr>
-			 <th>EquipmentID</th>
-			 <th>Group</th>
-			 <th>isCheckedOut</th>
-			 <th>User_id</th>
-			 <th>UserName</th>
-			 <th>time</th>
+			 <th>TIME</th>
+			 <th>EQ_ID</th>
+			 <th>SN</th>
+			 <th>DESCRIPTION</th>
+			 <th>ITEM_NAME</th>
+			 <th>IDENTIFIER</th>	
+			 <th>MANUFACTUER</th>
+			 <th>CATAGORY</th>
+			 <th>USER</th>
 		   </tr>
 	   </thead>
 	<?php for($i=0,$num = count($Equipment); $i < $num; $i+=1):?>
 	<tr>
-		<td><?=$Equipment[$i]['id_name']?></td>
-		<td><?=$Equipment[$i]['group_name']?></td>
-		<td><?=$Equipment[$i]['isCheckedOut']?></td>
-		<td><?=$Equipment[$i]['user_id']?></td>
-		<td><?=$Equipment[$i]['user_name']?></td>
 		<td><?=$Equipment[$i]['time']?></td>
+		<td><?=$Equipment[$i]['EQ_ID']?></td>
+		<td><?=$Equipment[$i]['SN']?></td>
+		<td><?=$Equipment[$i]['Description']?></td>
+		<td><?=$Equipment[$i]['ItemName']?></td>
+		<td><?=$Equipment[$i]['Identifier']?></td>
+		<td><?=$Equipment[$i]['Manufacture']?></td>
+		<td><?=$Equipment[$i]['Catagory']?></td>
+		<td><?=$Equipment[$i]['user_name']?></td>
+		
 	</tr> 
 	<?php endfor;?>
 	</table>
