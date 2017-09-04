@@ -27,6 +27,7 @@ if (($handle = fopen("../history.csv", "r")) !== FALSE) {
 <div class="jumbotron">
   <h1>EQUIPMENT LOG</h1>
   </div>
+<a href="../history.csv" class="btn btn-default"><button type="button" class="btn btn-primary btn-sm" >history.csv</button></a>
 	<table class="success table table-striped table-condensed table-bordered">
 	   <thead>
 		  <tr>
